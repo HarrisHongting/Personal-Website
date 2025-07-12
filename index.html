@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harris Liu</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+  
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <span>Loading...</span>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="nav">
+    <div class="nav-main">
+      <div class="logo">Harris's Portfolio</div>
+      <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    
+    <div class="right-nav">
+      <nav class="menu">
+        <a href="#about" data-en="About" data-zh="关于">About</a>
+        <a href="#work" data-en="Work Experience" data-zh="工作经历">Work Experience</a>
+        
+        <div class="dropdown" id="more-dropdown">
+          <a href="#" class="dropdown-toggle" id="more-toggle" data-en="More ▼" data-zh="更多 ▼">More ▼</a>
+          <div class="dropdown-menu">
+            <a href="#projects" data-en="Projects" data-zh="项目">Projects</a>
+            <a href="#education" data-en="Education" data-zh="教育">Education</a>
+            <a href="#skills" data-en="Skills" data-zh="技能">Skills</a>
+            <a href="#languages" data-en="Languages" data-zh="语言">Languages</a>
+            <a href="#hobbies" data-en="Hobbies" data-zh="爱好">Hobbies</a>
+          </div>
+        </div>
+        
+        <a href="#contact" data-en="Contact" data-zh="联系">Contact</a>
+      </nav>
+      
+      <button class="theme-toggle" onclick="toggleTheme()"></button>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">中文</button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu">✕</button>
+    <nav>
+      <a href="#about" data-en="About" data-zh="关于">About</a>
+      <a href="#work" data-en="Work Experience" data-zh="工作经历">Work Experience</a>
+      <a href="#projects" data-en="Projects" data-zh="项目">Projects</a>
+      <a href="#education" data-en="Education" data-zh="教育">Education</a>
+      <a href="#skills" data-en="Skills" data-zh="技能">Skills</a>
+      <a href="#languages" data-en="Languages" data-zh="语言">Languages</a>
+      <a href="#hobbies" data-en="Hobbies" data-zh="爱好">Hobbies</a>
+      <a href="#contact" data-en="Contact" data-zh="联系">Contact</a>
+      <button class="theme-toggle mobile-theme-toggle" onclick="toggleTheme()"></button>
+      <button class="lang-toggle mobile-lang-toggle" id="mobileLangToggle" onclick="toggleLang()">中文</button>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="avatar.jpeg" alt="Harris Liu" class="avatar" />
+    <h1 id="typing" data-en="Hi, I'm Hongting(Harris) Liu" data-zh="你好，我是刘泓廷"></h1>
+    <p data-en="Developer | Data Enthusiast | Problem Solver" data-zh="开发者 | 数据爱好者 | 问题解决者"></p>
+    <div class="buttons">
+      <a href="#resume" class="btn" data-en="📄 View Resume" data-zh="📄 查看简历"></a>
+      <a href="#contact" class="btn btn-outline" data-en="✉️ Contact" data-zh="✉️ 联系我"></a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <h2 data-en="About Me" data-zh="关于我"></h2>
+    <div class="about-card">
+      <div class="about-header">
+        <h3 data-en="💼 About Me — Hongting Liu" data-zh="💼 关于我 — 刘泓廷"></h3>
+        <p class="about-subtitle" data-en="💻 IT Professional | 🎮 Gamer | 🎸 Guitar Enthusiast" data-zh="💻 IT专业人士 | 🎮 游戏玩家 | 🎸 吉他爱好者"></p>
+      </div>
+      
+      <div class="about-content">
+        <p data-en="👋 Hello! I'm Hongting Liu, a multidisciplinary tech enthusiast with a background in Computer Science, specialized in AI, Robotics, Game Development, and Back-End Development. I hold an MSc in Robotics and Computation from UCL, and a BSc in AI from University of Sussex."
+           data-zh="👋 你好！我是刘泓廷，一位多学科技术爱好者，拥有计算机科学背景，专攻人工智能、机器人、游戏开发和后端开发。我拥有UCL机器人与计算理学硕士学位，以及萨塞克斯大学人工智能理学学士学位。"></p>
+        
+        <p data-en="🔧 I love building smart systems and real-time applications. At GroupMe, I led the development of the 'Buymee go' app, using real-time push technology to increase engagement by 20%, while optimizing backend performance and reducing load time by 30% with MySQL and Redis. I also developed a 3D video game using the Unity engine, where players could navigate the game world through sound alone, making the game playable with eyes closed."
+           data-zh="🔧 我热爱构建智能系统和实时应用。在GroupMe，我主导开发了'Buymee go'应用，使用实时推送技术将用户参与度提升20%，同时通过MySQL和Redis优化后端性能，将加载时间减少30%。我还在Unity中开发了一个3D视频游戏，玩家仅通过声音即可在游戏世界中导航，使游戏可以在闭眼状态下进行。"></p>
+        
+        <div class="about-strengths">
+          <h4 data-en="🧠 My strengths lie in:" data-zh="🧠 我的专长包括："></h4>
+          <ul>
+            <li data-en="Full-stack development with Python, C#, SQL, and Unity" data-zh="使用Python、C#、SQL和Unity进行全栈开发"></li>
+            <li data-en="Database design and performance optimization" data-zh="数据库设计和性能优化"></li>
+            <li data-en="Cross-functional teamwork and agile project delivery" data-zh="跨职能团队协作和敏捷项目交付"></li>
+            <li data-en="Applied machine learning and AI-enhanced experiences" data-zh="应用机器学习和AI增强体验"></li>
+          </ul>
+        </div>
+        
+        <div class="about-hobbies">
+          <h4 data-en="🎮 When I'm chilling, I'm either:" data-zh="🎮 当我在放松时，我会："></h4>
+          <ul>
+            <li data-en="Competing in FPS games (Valorant, Overwatch… let's team up!)" data-zh="参与FPS游戏竞技（Valorant、Overwatch…来和我一起搞事吧！）"></li>
+            <li data-en="Creating immersive game ideas in Unity" data-zh="在Unity中创造沉浸式游戏创意"></li>
+            <li data-en="Relaxing with my guitar, playing blues, rock, and lo-fi melodies" data-zh="弹吉他放松，演奏蓝调、摇滚和lo-fi旋律"></li>
+          </ul>
+        </div>
+        
+        <div class="about-location">
+          <p data-en="📍 Currently based in London | Open to remote or hybrid roles in software engineering, game development, or data-driven system design"
+             data-zh="📍 目前居住在伦敦 | 开放软件工程、游戏开发或数据驱动系统设计的远程或混合工作机会"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience Section -->
+  <section class="section" id="work">
+    <h2 data-en="💼 Work Experience" data-zh="💼 工作经历"></h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3 data-en="Data Scientist" data-zh="数据科学家"></h3>
+        <p class="institution" data-en="GROUPME LTD, London, United Kingdom" data-zh="GROUPME有限公司，英国伦敦"></p>
+        <p class="year" data-en="Feb 2024 - Jun 2024" data-zh="2024年2月 - 2024年6月"></p>
+        <ul>
+          <li data-en="Spearheaded the development of the 'BuyMee go' app, utilising real-time push technology, which augmented user engagement by 20%." data-zh="主导开发'BuyMee go'应用，运用实时推送技术，使用户参与度提升20%。"></li>
+          <li data-en="Optimised database management and back-end systems using MySQL, achieving a 30% reduction in website loading times." data-zh="使用MySQL优化数据库管理和后端系统，使网站加载时间缩短30%。"></li>
+          <li data-en="Collaborated with cross-functional teams to enhance app performance, ensuring smooth implementation of new features." data-zh="与跨部门团队协作，提升应用性能，确保新功能顺利实施。"></li>
+          <li data-en="Leveraged Google Translate API to boost English-speaking app users by 30%." data-zh="利用Google翻译API，使英语用户增长30%。"></li>
+        </ul>
+      </div>
+      
+      <div class="project-card">
+        <h3 data-en="Network Back-End Technical Management" data-zh="网络后端技术管理"></h3>
+        <p class="institution" data-en="Guangdong Excellent Gas Group Investment Co., Ltd, Guangdong, China" data-zh="广东卓越燃气集团投资有限公司，中国广东"></p>
+        <p class="year" data-en="Jun 2021 - Sep 2021" data-zh="2021年6月 - 2021年9月"></p>
+        <ul>
+          <li data-en="Developed the back-end architecture of the company's app using Python and Node.js, enhancing data integration and query processing, which reduced processing times by 25%." data-zh="使用Python和Node.js开发公司应用的后端架构，提升数据集成和查询处理效率，使处理时间缩短25%。"></li>
+          <li data-en="Implemented Redis to cache frequently requested data, reducing load times and enhancing user interaction responsiveness, resulting in a 15% increase in customer retention." data-zh="实施Redis缓存频繁请求的数据，减少加载时间并提升用户交互响应速度，使客户留存率提升15%。"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <h2 data-en="🔬 Academic Projects" data-zh="🔬 学术项目"></h2>
+    <div class="project-grid">
+      <div class="project-card" data-link="https://github.com/HarrisHongting/Advancing-Language-driven-Scene-Synthesis-with-AI-Text-Prompt-Generation.git">
+        <div class="card-tip" data-en="Click to view" data-zh="点击查看"></div>
+        <h3 data-en="Advancing Language-Driven Scene Synthesis with AI Text Prompt Generation" data-zh="基于AI文本提示生成的语言驱动场景合成技术推进">
+          Advancing Language-Driven Scene Synthesis with AI Text Prompt Generation
+        </h3>
+        <img src="LSDM.png" class="project-img" alt="LSDM Project Preview" />
+        <p class="institution" data-en="University College London" data-zh="伦敦大学学院"></p>
+        <p class="year"><span data-en="06/2024 - 09/2024" data-zh="2024年6月 - 2024年9月">06/2024 - 09/2024</span></p>
+        <ul>
+          <li data-en="Worked with Groq AI API and optimised the LSDM model to enhance AI-driven scene synthesis based on text prompts." data-zh="与Groq AI API合作，优化LSDM模型以增强基于文本提示的AI驱动场景合成。"></li>
+          <li data-en="Enhanced training efficiency, contributing to improved AI-generated content." data-zh="提升训练效率，为改进AI生成内容做出贡献。"></li>
+          <li data-en="Optimised training using the LSDM model." data-zh="使用LSDM模型优化训练过程。"></li>
+        </ul>
+      </div>
+      
+      <div class="project-card" data-link="https://github.com/HarrisHongting/Final-Project.git">
+        <div class="card-tip" data-en="Click to view" data-zh="点击查看"></div>
+        <h3 data-en="The Only Light in the Dark" data-zh="黑暗中的唯一光芒">
+          The Only Light in the Dark
+        </h3>
+        <img src="The_Only_Light_in_the_Dark.png" class="project-img" alt="The Only Light in the Dark Preview" />
+        <p class="institution" data-en="University of Sussex" data-zh="萨塞克斯大学"></p>
+        <p class="year"><span data-en="12/2022 - 04/2023" data-zh="2022年12月 - 2023年4月">12/2022 - 04/2023</span></p>
+        <ul>
+          <li data-en="Developed a 3D video game using the Unity engine, where players could navigate the game world through sound alone, making the game playable with eyes closed." data-zh="使用Unity引擎开发3D视频游戏，玩家仅通过声音即可在游戏世界中导航，使游戏可以在闭眼状态下进行。"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section" id="education">
+    <h2 data-en="🎓 Education" data-zh="🎓 教育背景"></h2>
+    <div class="education-grid">
+      <div class="education-card">
+        <h3 data-en="Master of Science: Computer Science: Robotics and Computation" data-zh="理学硕士：计算机科学：机器人与计算"></h3>
+        <p class="institution" data-en="University College London, London, UK" data-zh="伦敦大学学院，英国伦敦"></p>
+        <p class="year" data-en="09/2023 - 06/2024" data-zh="2023年9月 - 2024年6月"></p>
+        <p class="description" data-en="Merit" data-zh="优秀学位"></p>
+        <ul class="course-list">
+          <li data-en="Multi-agent Artificial Intelligence" data-zh="多智能体人工智能"></li>
+          <li data-en="Robotic Systems Engineering" data-zh="机器人系统工程"></li>
+          <li data-en="Machine Vision" data-zh="机器视觉"></li>
+          <li data-en="Applied Deep Learning" data-zh="应用深度学习"></li>
+          <li data-en="Robotic Sensing" data-zh="机器人传感"></li>
+          <li data-en="Robot Vision" data-zh="机器人视觉"></li>
+        </ul>
+      </div>
+      
+      <div class="education-card">
+        <h3 data-en="Bachelor of Science: Computer Science: Artificial Intelligence" data-zh="理学学士：计算机科学：人工智能"></h3>
+        <p class="institution" data-en="University of Sussex, Brighton, UK" data-zh="萨塞克斯大学，英国布莱顿"></p>
+        <p class="year" data-en="09/2018 - 06/2023" data-zh="2018年9月 - 2023年6月"></p>
+        <p class="description" data-en="Second Class Honours, Division 1" data-zh="二等一荣誉学位"></p>
+        <ul class="course-list">
+          <li data-en="Database" data-zh="数据库"></li>
+          <li data-en="Machine Learning" data-zh="机器学习"></li>
+          <li data-en="Software Engineering" data-zh="软件工程"></li>
+          <li data-en="Computer Vision" data-zh="计算机视觉"></li>
+          <li data-en="Natural Language Engineering" data-zh="自然语言工程"></li>
+          <li data-en="Acquired Intelligence & Adaptive Behaviour" data-zh="获得性智能与自适应行为"></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hobbies Section -->
+  <section class="section" id="hobbies">
+    <h2 data-en="🎮 Hobbies & Interests" data-zh="🎮 兴趣爱好"></h2>
+    <div class="hobbies-grid">
+      <div class="hobby-card">
+        <div class="hobby-icon">💻</div>
+        <h3 data-en="Coding" data-zh="编程">Coding</h3>
+        <p data-en="Building side projects and exploring new technologies" data-zh="开发个人项目并探索新技术"></p>
+      </div>
+      
+      <div class="hobby-card">
+        <div class="hobby-icon">🎮</div>
+        <h3 data-en="Gaming" data-zh="游戏">Gaming</h3>
+        <p data-en="FPS (Valorant, Overwatch), MOBA (League of Legends), and various single-player games" data-zh="FPS（瓦洛兰特、守望先锋）、MOBA（英雄联盟）以及各种单机游戏"></p>
+      </div>
+      
+      <div class="hobby-card">
+        <div class="hobby-icon">🎵</div>
+        <h3 data-en="Music" data-zh="音乐">Music</h3>
+        <p data-en="Playing guitar and discovering new artists" data-zh="弹吉他并发现新的音乐人"></p>
+      </div>
+      
+      <div class="hobby-card">
+        <div class="hobby-icon">💪</div>
+        <h3 data-en="Fitness" data-zh="健身">Fitness</h3>
+        <p data-en="Running, gym workouts, and maintaining a healthy lifestyle" data-zh="跑步、健身锻炼，保持健康的生活方式"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <h2 data-en="⚡ Skills" data-zh="⚡ 技能专长"></h2>
+    <div class="about-card">
+      <ul>
+        <li data-en="💻 Programming: Python, C#, SQL, JavaScript, HTML" data-zh="💻 编程语言：Python、C#、SQL、JavaScript、HTML"></li>
+        <li data-en="🤖 Technologies: AI & Robotics, Data Analysis, Unity, Blender, JetBrains, Matlab, ROS, OBS Studio, Viamaker" data-zh="🤖 技术领域：人工智能与机器人、数据分析、Unity、Blender、JetBrains、Matlab、ROS、OBS Studio、剪映"></li>
+        <li data-en=" 🤓 Soft Skills: Project Management, Strategic Planning, Problem-solving, Communication, Leadership" data-zh="🤓 软技能：项目管理、战略规划、问题解决、沟通协作、领导力"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Languages Section -->
+  <section class="section" id="languages">
+    <h2 data-en="🌍 Languages" data-zh="🌍 语言能力"></h2>
+    <div class="about-card">
+      <ul>
+        <li data-en="🇬🇧 English: Fluent" data-zh="🇬🇧 英语：流利"></li>
+        <li data-en="🇨🇳 Chinese (Mandarin): Native" data-zh="🇨🇳 中文（普通话）：母语"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Resume Section -->
+  <section class="section" id="resume">
+    <h2 data-en="📋 My Resume" data-zh="📋 我的简历"></h2>
+    <div class="buttons">
+      <button type="button" class="btn" onclick="openModal()" data-en="📄 Preview Resume" data-zh="📄 预览简历"></button>
+      <button type="button" class="btn btn-outline" onclick="downloadResume()" data-en="⬇️ Download Resume" data-zh="⬇️ 下载简历"></button>
+    </div>
+  </section>
+  
+  <!-- PDF Modal -->
+  <div class="modal" id="pdfModal">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal()">✖</button>
+      <iframe id="pdfIframe" type="application/pdf"></iframe>
+    </div>
+  </div>  
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <h2 data-en="📞 Contact" data-zh="📞 联系方式"></h2>
+    <p data-en="Feel free to reach out via email or social platforms below." data-zh="欢迎通过以下邮箱或社交平台联系我。"></p>
+    <div class="socials">
+      <a href="https://github.com/HarrisHongting" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/harris-liu-19102000hl" target="_blank">LinkedIn</a>
+      <a href="mailto:lhtbj123456789@gmail.com" data-en="Email Me" data-zh="发送邮件"></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p data-en="&copy; 2025 Harris Liu. All rights reserved." data-zh="&copy; 2025 刘泓廷. 版权所有."></p>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Back to top" title="Back to top">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="14" fill="currentColor"/>
+      <path d="M14 20V8M14 8L9 13M14 8L19 13" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- Mobile Floating Buttons -->
+  <div class="mobile-floating-buttons">
+    <button class="mobile-floating-btn" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle theme">
+      🌙
+    </button>
+    <button class="mobile-floating-btn" onclick="toggleLang()" aria-label="Toggle language" title="Toggle language">
+      🌐
+    </button>
+  </div>
+
+  <!-- External Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  
+  <!-- Main JavaScript -->
+  <script>
+    // ===== PARTICLE SYSTEM CONFIGURATION =====
+    const particlesConfigLight = {
+      particles: {
+        number: { value: 50 },
+        color: { value: "#0077ff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3 },
+        size: { value: 3 },
+        links: {
+          enable: true,
+          distance: 120,
+          color: "#0077ff",
+          opacity: 0.2,
+          width: 1
+        },
+        move: { enable: true, speed: 1.5 }
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "repulse" }
+        }
+      },
+      retina_detect: true
+    };
+
+    const particlesConfigDark = {
+      particles: {
+        number: { value: 50 },
+        color: { value: "#00cfff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3 },
+        size: { value: 3 },
+        links: {
+          enable: true,
+          distance: 120,
+          color: "#00cfff",
+          opacity: 0.2,
+          width: 1
+        },
+        move: { enable: true, speed: 1.5 }
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "repulse" }
+        }
+      },
+      retina_detect: true
+    };
+
+    // ===== PARTICLE SYSTEM MANAGEMENT =====
+    async function loadParticlesByTheme() {
+      try {
+        // Destroy old instance
+        if (window.tsParticles) {
+          await window.tsParticles.destroy();
+        }
+        
+        // Remove all canvas elements
+        const particlesContainer = document.getElementById('particles-js');
+        if (particlesContainer) {
+          while (particlesContainer.firstChild) {
+            particlesContainer.removeChild(particlesContainer.firstChild);
+          }
+        }
+        
+        // Reinitialize with current theme
+        const isDark = document.body.classList.contains("dark");
+        const config = isDark ? particlesConfigDark : particlesConfigLight;
+        
+        await window.tsParticles.load("particles-js", config);
+      } catch (error) {
+        console.error('tsParticles loading failed:', error);
+        fallbackToParticlesJS();
+      }
+    }
+
+    function fallbackToParticlesJS() {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/particles.js';
+      script.onload = function() {
+        const isDark = document.body.classList.contains("dark");
+        particlesJS("particles-js", isDark ? particlesConfigDark : particlesConfigLight);
+      };
+      document.head.appendChild(script);
+    }
+
+    // ===== PAGE INITIALIZATION =====
+    window.addEventListener("load", async () => {
+      document.getElementById("loader").classList.add("hidden");
+      document.body.classList.add("loaded");
+      
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+      }
+      
+      await loadParticlesByTheme();
+    });
+
+    // Set theme before page load to prevent flash
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+
+    // ===== THEME TOGGLE =====
+    async function toggleTheme() {
+      const isDark = document.body.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "light" : "dark");
+      
+      // Update mobile floating button icon
+      const mobileThemeBtn = document.querySelector('.mobile-floating-btn[onclick="toggleTheme()"]');
+      if (mobileThemeBtn) {
+        mobileThemeBtn.innerHTML = isDark ? '☀️' : '🌙';
+      }
+      
+      location.reload();
+    }
+
+    // ===== NAVIGATION ACTIVE STATE =====
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".menu a");
+    
+    function updateActiveNav() {
+      let current = "";
+      const scrollPosition = window.pageYOffset + 100;
+      
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionBottom = sectionTop + sectionHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          current = section.getAttribute("id");
+        }
+      });
+      
+      // Activate contact when scrolling to bottom
+      if (scrollPosition + window.innerHeight >= document.documentElement.scrollHeight - 50) {
+        current = "contact";
+      }
+      
+      // Handle More dropdown sections
+      const moreSections = ["projects", "education", "skills", "languages", "hobbies"];
+      const moreToggle = document.getElementById("more-toggle");
+      
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+      });
+      
+      if (moreSections.includes(current)) {
+        moreToggle.classList.add("active");
+      } else {
+        navLinks.forEach((link) => {
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+        if (moreToggle) moreToggle.classList.remove("active");
+      }
+    }
+    
+    window.addEventListener("scroll", updateActiveNav);
+    window.addEventListener("load", updateActiveNav);
+    
+    // ===== SMOOTH SCROLLING =====
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+    
+    document.querySelectorAll('.dropdown-menu a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // ===== PDF MODAL FUNCTIONS =====
+    function isWeChatBrowser() {
+      const ua = navigator.userAgent.toLowerCase();
+      return ua.indexOf('micromessenger') !== -1;
+    }
+
+    function openModal() {
+      const modal = document.getElementById("pdfModal");
+      const iframe = document.getElementById("pdfIframe");
+      
+      // WeChat browser fallback
+      if (isWeChatBrowser()) {
+        iframe.style.display = 'none';
+        const wechatFallback = document.createElement('div');
+        wechatFallback.innerHTML = `
+          <div style="text-align: center; padding: 40px; color: #333;">
+            <div style="font-size: 3rem; margin-bottom: 20px;">📄</div>
+            <h3 style="margin-bottom: 15px;">Preview Resume</h3>
+            <p style="margin-bottom: 25px; color: #666; line-height: 1.6;">
+              Due to the limitations of WeChat browser, the PDF file cannot be previewed directly.<br>
+              Please click the button below to download the resume file.
+            </p>
+            <a href="Hongting_Liu_CV.pdf" download class="btn" style="margin: 10px;">⬇️ Download Resume</a>
+            <button onclick="closeModal()" class="btn btn-outline" style="margin: 10px;">Close</button>
+          </div>
+        `;
+        
+        const existingFallback = modal.querySelector('.modal-content > div:last-child');
+        if (existingFallback && !existingFallback.classList.contains('modal-close')) {
+          existingFallback.remove();
+        }
+        
+        modal.querySelector('.modal-content').appendChild(wechatFallback);
+        modal.classList.add("active");
+        document.body.style.overflow = 'hidden';
+        return;
+      }
+      
+      // Standard PDF preview logic
+      if (typeof pdfjsLib !== 'undefined') {
+        iframe.style.display = 'none';
+        
+        const canvasContainer = document.createElement('div');
+        canvasContainer.id = 'pdf-canvas-container';
+        canvasContainer.style.maxHeight = '80vh';
+        
+        const existingContainer = modal.querySelector('#pdf-canvas-container');
+        if (existingContainer) {
+          existingContainer.remove();
+        }
+        
+        modal.querySelector('.modal-content').appendChild(canvasContainer);
+        
+        pdfjsLib.getDocument('Hongting_Liu_CV.pdf').promise.then(function(pdf) {
+          pdf.getPage(1).then(function(page) {
+            const containerWidth = canvasContainer.offsetWidth;
+            const unscaledViewport = page.getViewport({ scale: 1 });
+            const pixelRatio = window.devicePixelRatio || 1;
+            const baseScale = containerWidth / unscaledViewport.width;
+            const scale = baseScale * Math.min(pixelRatio, 2);
+            const viewport = page.getViewport({ scale: scale });
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = viewport.width * pixelRatio;
+            canvas.height = viewport.height * pixelRatio;
+            canvas.style.width = viewport.width + 'px';
+            context.scale(pixelRatio, pixelRatio);
+
+            canvasContainer.appendChild(canvas);
+
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport
+            };
+
+            page.render(renderContext);
+          });
+        }).catch(function(error) {
+          console.error('PDF loading failed:', error);
+          iframe.style.display = 'block';
+          iframe.src = 'Hongting_Liu_CV.pdf#toolbar=0&navpanes=0&scrollbar=0';
+          canvasContainer.remove();
+        });
+      } else {
+        iframe.style.display = 'block';
+        iframe.src = 'Hongting_Liu_CV.pdf#toolbar=0&navpanes=0&scrollbar=0';
+        
+        iframe.onload = function() {
+          console.log("PDF loaded successfully");
+        };
+        
+        iframe.onerror = function() {
+          console.error("Failed to load PDF");
+          iframe.style.display = 'none';
+          const fallback = document.createElement('div');
+          fallback.innerHTML = `
+            <div style="text-align: center; padding: 40px;">
+              <p>PDF无法在浏览器中预览</p>
+              <a href="Hongting_Liu_CV.pdf" target="_blank" class="btn">在新窗口中打开PDF</a>
+            </div>
+          `;
+          modal.querySelector('.modal-content').appendChild(fallback);
+        };
+      }
+      
+      modal.classList.add("active");
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("pdfModal");
+      const iframe = document.getElementById("pdfIframe");
+      
+      iframe.style.display = 'block';
+      iframe.src = '';
+      
+      const canvasContainer = modal.querySelector('#pdf-canvas-container');
+      if (canvasContainer) {
+        canvasContainer.remove();
+      }
+      
+      const fallbacks = modal.querySelectorAll('.modal-content > div');
+      fallbacks.forEach(fallback => {
+        if (!fallback.classList.contains('modal-close') && 
+            !fallback.classList.contains('modal-content')) {
+          fallback.remove();
+        }
+      });
+      
+      modal.classList.remove("active");
+      document.body.style.overflow = '';
+    }
+    
+    function downloadResume() {
+      const link = document.createElement('a');
+      link.href = 'Hongting_Liu_CV.pdf';
+      link.download = 'Hongting_Liu_CV.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+    
+    // Modal event listeners
+    document.getElementById("pdfModal").addEventListener("click", function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+    
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && document.getElementById("pdfModal").classList.contains("active")) {
+        closeModal();
+      }
+    });
+  </script>
+
+  <!-- Mobile Navigation Script -->
+  <script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+    
+    hamburgerBtn.addEventListener('click', function() {
+      mobileNav.classList.toggle('active');
+      document.body.classList.toggle('no-scroll', mobileNav.classList.contains('active'));
+    });
+    
+    mobileNav.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' || e.target.classList.contains('theme-toggle') || e.target === mobileNav) {
+        mobileNav.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+      }
+    });
+    
+    mobileCloseBtn.addEventListener('click', function() {
+      mobileNav.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+    });
+  </script>
+
+  <!-- Language Toggle Script -->
+  <script>
+    let typingTimeout = null;
+    
+    function setLang(lang) {
+      document.querySelectorAll('[data-en], [data-zh]').forEach(el => {
+        if (lang === 'zh') {
+          if (el.dataset.zh) el.textContent = el.dataset.zh;
+        } else {
+          if (el.dataset.en) el.textContent = el.dataset.en;
+        }
+      });
+      
+      document.getElementById('langToggle').textContent = lang === 'zh' ? 'English' : '中文';
+      
+      const mobileLangToggle = document.getElementById('mobileLangToggle');
+      if (mobileLangToggle) {
+        mobileLangToggle.textContent = lang === 'zh' ? 'English' : '中文';
+      }
+      
+      localStorage.setItem('lang', lang);
+      
+      // Restart typing effect
+      const typingElement = document.getElementById('typing');
+      if (typingElement) {
+        if (typingTimeout) {
+          clearTimeout(typingTimeout);
+          typingTimeout = null;
+        }
+        typingElement.innerHTML = '';
+        const text = lang === 'zh' ? typingElement.dataset.zh : typingElement.dataset.en;
+        let index = 0;
+        const typingSpeed = lang === 'zh' ? 140 : 80;
+        
+        function typeEffect() {
+          if (index < text.length) {
+            typingElement.innerHTML += text.charAt(index);
+            index++;
+            typingTimeout = setTimeout(typeEffect, typingSpeed);
+          }
+        }
+        typeEffect();
+      }
+    }
+    
+    function toggleLang() {
+      const current = localStorage.getItem('lang') || 'en';
+      const newLang = current === 'en' ? 'zh' : 'en';
+      localStorage.setItem('lang', newLang);
+      
+      // Update mobile floating button icon
+      const mobileLangBtn = document.querySelector('.mobile-floating-btn[onclick="toggleLang()"]');
+      if (mobileLangBtn) {
+        mobileLangBtn.innerHTML = '🌐';
+      }
+      
+      location.reload();
+    }
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('lang') || 'en';
+      setLang(lang);
+      
+      // Initialize mobile floating button icons
+      const isDark = document.body.classList.contains("dark");
+      const mobileThemeBtn = document.querySelector('.mobile-floating-btn[onclick="toggleTheme()"]');
+      const mobileLangBtn = document.querySelector('.mobile-floating-btn[onclick="toggleLang()"]');
+      
+      if (mobileThemeBtn) {
+        mobileThemeBtn.innerHTML = isDark ? '☀️' : '🌙';
+      }
+      
+      if (mobileLangBtn) {
+        mobileLangBtn.innerHTML = '🌐';
+      }
+    });
+  </script>
+
+  <!-- 3D Card Effects Script -->
+  <script>
+    function enable3DCardEffect() {
+      ['project-card', 'education-card', 'hobby-card'].forEach(cls => {
+        document.querySelectorAll('.' + cls).forEach(card => {
+          card.style.cursor = 'pointer';
+          
+          // Click navigation (only for project cards with data-link)
+          card.addEventListener('click', function(e) {
+            if (e.target.closest('a')) return;
+            const url = card.getAttribute('data-link');
+            if (url) window.open(url, '_blank');
+          });
+          
+          // 3D hover animation (desktop only)
+          if (window.innerWidth > 600) {
+            card.addEventListener('mousemove', function(e) {
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const maxRotate = 5;
+              const rotateY = ((x - centerX) / centerX) * maxRotate;
+              const rotateX = -((y - centerY) / centerY) * maxRotate;
+              card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+              card.classList.add('card-hover');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+              card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+              card.classList.remove('card-hover');
+            });
+            
+            card.addEventListener('mouseenter', function() {
+              card.style.transition = 'transform 0.18s cubic-bezier(.25,.8,.25,1)';
+            });
+          }
+        });
+      });
+    }
+    
+    window.addEventListener('DOMContentLoaded', enable3DCardEffect);
+    window.addEventListener('resize', function() {
+      document.querySelectorAll('.project-card, .education-card, .hobby-card').forEach(card => {
+        card.style.transform = '';
+        card.classList.remove('card-hover');
+      });
+      enable3DCardEffect();
+    });
+  </script>
+
+  <!-- Back to Top Script -->
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    function checkBackToTop() {
+      if (window.scrollY > window.innerHeight * 0.3) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    }
+    
+    window.addEventListener('scroll', checkBackToTop);
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    checkBackToTop();
+  </script>
+</body>
+</html>
