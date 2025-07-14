@@ -545,7 +545,7 @@
               Due to the limitations of WeChat browser, the PDF file cannot be previewed directly.<br>
               Please click the button below to download the resume file.
             </p>
-            <a href="Hongting_Liu_CV.pdf" download class="btn" style="margin: 10px;">⬇️ Download Resume</a>
+            <a href="Hongting_Liu_Re.pdf" download class="btn" style="margin: 10px;">⬇️ Download Resume</a>
             <button onclick="closeModal()" class="btn btn-outline" style="margin: 10px;">Close</button>
           </div>
         `;
@@ -576,7 +576,7 @@
         
         modal.querySelector('.modal-content').appendChild(canvasContainer);
         
-        pdfjsLib.getDocument('Hongting_Liu_CV.pdf').promise.then(function(pdf) {
+        pdfjsLib.getDocument('Hongting_Liu_Resume.pdf').promise.then(function(pdf) {
           pdf.getPage(1).then(function(page) {
             const containerWidth = canvasContainer.offsetWidth;
             const unscaledViewport = page.getViewport({ scale: 1 });
@@ -604,12 +604,12 @@
         }).catch(function(error) {
           console.error('PDF loading failed:', error);
           iframe.style.display = 'block';
-          iframe.src = 'Hongting_Liu_CV.pdf#toolbar=0&navpanes=0&scrollbar=0';
+          iframe.src = 'Hongting_Liu_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0';
           canvasContainer.remove();
         });
       } else {
         iframe.style.display = 'block';
-        iframe.src = 'Hongting_Liu_CV.pdf#toolbar=0&navpanes=0&scrollbar=0';
+        iframe.src = 'Hongting_Liu_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0';
         
         iframe.onload = function() {
           console.log("PDF loaded successfully");
@@ -622,7 +622,7 @@
           fallback.innerHTML = `
             <div style="text-align: center; padding: 40px;">
               <p>PDF无法在浏览器中预览</p>
-              <a href="Hongting_Liu_CV.pdf" target="_blank" class="btn">在新窗口中打开PDF</a>
+              <a href="Hongting_Liu_Resume.pdf" target="_blank" class="btn">在新窗口中打开PDF</a>
             </div>
           `;
           modal.querySelector('.modal-content').appendChild(fallback);
@@ -659,8 +659,8 @@
     
     function downloadResume() {
       const link = document.createElement('a');
-      link.href = 'Hongting_Liu_CV.pdf';
-      link.download = 'Hongting_Liu_CV.pdf';
+      link.href = 'Hongting_Liu_Resume.pdf';
+      link.download = 'Hongting_Liu_Resume.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
