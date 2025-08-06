@@ -95,7 +95,8 @@ body.loaded footer {
   100% { transform: translateY(0); }
 }
 
-@media (max-width: 1080px) {
+/* iPad特殊处理 - 使用移动端导航 */
+@media (max-width: 1080px) or (hover: none) {
   .logo {
     font-size: 1.18rem;
     margin-right: 4vw;
@@ -160,10 +161,31 @@ body.loaded footer {
   padding: 8px 0;
 }
 
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+/* 桌面端hover行为 */
+@media (hover: hover) and (pointer: fine) {
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+/* 触摸设备（包括iPad）- 禁用hover行为和下拉菜单 */
+@media (hover: none) or (pointer: coarse) {
+  .dropdown-menu {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  
+  /* 确保下拉菜单永远不会显示 */
+  .dropdown:hover .dropdown-menu,
+  .dropdown.active .dropdown-menu {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
 }
 
 .dropdown-menu a {
@@ -852,8 +874,8 @@ body.dark .socials a:hover {
   }
 }
 
-/* Tablet Styles */
-@media (max-width: 1080px) {
+/* Tablet and Touch Device Styles - 包括iPad */
+@media (max-width: 1080px), (hover: none) {
   .nav {
     padding: 1rem 4vw;
   }
@@ -1403,6 +1425,23 @@ body.dark .socials a:hover {
   font-size: 1.1rem;
 }
 
+/* ===== WORK EXPERIENCE AND PROJECTS LIST STYLES ===== */
+.project-card ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.project-card ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #0077ff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 .about-location {
   margin-top: 2rem;
   padding-top: 1.5rem;
@@ -1455,6 +1494,11 @@ body.dark .about-hobbies li {
 
 body.dark .about-strengths li::before,
 body.dark .about-hobbies li::before {
+  color: #00cfff;
+}
+
+/* Dark theme for work experience and projects lists */
+body.dark .project-card ul li::before {
   color: #00cfff;
 }
 
@@ -1727,7 +1771,7 @@ body.dark .project-card.card-hover h3, body.dark .project-card.card-hover h3 a {
   right: 30px;
   width: 50px;
   height: 50px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.9);
   color: #0077ff;
   border: none;
   border-radius: 50%;
@@ -1736,11 +1780,25 @@ body.dark .project-card.card-hover h3, body.dark .project-card.card-hover h3 a {
   visibility: hidden;
   transition: all 0.3s ease;
   z-index: 1000;
-  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.4), 0 0 0 0 rgba(0, 119, 255, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
+  animation: pulse-ring 2s infinite;
+}
+
+/* 脉冲动画 */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.4), 0 0 0 0 rgba(0, 119, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.4), 0 0 0 10px rgba(0, 119, 255, 0);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.4), 0 0 0 0 rgba(0, 119, 255, 0);
+  }
 }
 
 #backToTop svg {
@@ -1753,22 +1811,43 @@ body.dark .project-card.card-hover h3, body.dark .project-card.card-hover h3 a {
   visibility: visible;
 }
 
+
+
 #backToTop:hover {
   background: rgba(0, 119, 255, 0.8);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 119, 255, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 119, 255, 0.6);
+  animation: none; /* 停止脉冲动画当hover时 */
 }
 
 body.dark #backToTop {
-  background: rgba(0, 207, 255, 0.7);
+  background: rgba(0, 207, 255, 0.9);
   color: white;
-  box-shadow: 0 4px 15px rgba(0, 207, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 207, 255, 0.4), 0 0 0 0 rgba(0, 207, 255, 0.7);
+}
+
+/* 深色模式下的脉冲动画 */
+body.dark #backToTop {
+  animation: pulse-ring-dark 2s infinite;
+}
+
+@keyframes pulse-ring-dark {
+  0% {
+    box-shadow: 0 4px 15px rgba(0, 207, 255, 0.4), 0 0 0 0 rgba(0, 207, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 4px 15px rgba(0, 207, 255, 0.4), 0 0 0 10px rgba(0, 207, 255, 0);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(0, 207, 255, 0.4), 0 0 0 0 rgba(0, 207, 255, 0);
+  }
 }
 
 body.dark #backToTop:hover {
   background: rgba(0, 153, 204, 0.8);
-  box-shadow: 0 6px 20px rgba(0, 207, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 207, 255, 0.6);
+  animation: none;
 }
 
 @media (max-width: 600px) {
@@ -1808,37 +1887,67 @@ body.dark #backToTop svg path {
 .mobile-floating-btn {
   width: 50px;
   height: 50px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.9);
   color: #0077ff;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.4), 0 0 0 0 rgba(0, 119, 255, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
   backdrop-filter: blur(10px);
+  position: relative;
+  animation: gentle-pulse 3s infinite;
+}
+
+/* 轻柔的脉冲动画 */
+@keyframes gentle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.4), 0 0 0 0 rgba(0, 119, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.4), 0 0 0 8px rgba(0, 119, 255, 0);
+  }
 }
 
 .mobile-floating-btn:hover {
   background: rgba(0, 119, 255, 0.8);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 119, 255, 0.5);
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 119, 255, 0.6);
+  animation: none;
 }
 
 body.dark .mobile-floating-btn {
-  background: rgba(0, 207, 255, 0.7);
+  background: rgba(0, 207, 255, 0.9);
   color: white;
   border: none;
-  box-shadow: 0 4px 15px rgba(0, 207, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 207, 255, 0.4), 0 0 0 0 rgba(0, 207, 255, 0.5);
+  animation: gentle-pulse-dark 3s infinite;
+}
+
+/* 深色模式下的轻柔脉冲动画 */
+@keyframes gentle-pulse-dark {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 207, 255, 0.4), 0 0 0 0 rgba(0, 207, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 207, 255, 0.4), 0 0 0 8px rgba(0, 207, 255, 0);
+  }
 }
 
 body.dark .mobile-floating-btn:hover {
   background: rgba(0, 153, 204, 0.8);
-  box-shadow: 0 6px 20px rgba(0, 207, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 207, 255, 0.6);
+  transform: translateY(-2px) scale(1.1);
+  animation: none;
 }
 
 /* Hide on desktop */
@@ -1848,8 +1957,15 @@ body.dark .mobile-floating-btn:hover {
   }
 }
 
+
+
 /* ===== PROJECT CARD TIP ===== */
 .project-card {
+  position: relative;
+}
+
+/* ===== EDUCATION CARD TIP ===== */
+.education-card {
   position: relative;
 }
 
@@ -1857,30 +1973,81 @@ body.dark .mobile-floating-btn:hover {
   position: absolute;
   top: 15px;
   right: 15px;
-  background: rgba(0, 119, 255, 0.9);
+  background: rgba(0, 119, 255, 0.85);
   color: white;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  opacity: 0;
-  transform: translateY(-10px);
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.7;
+  transform: translateY(0);
   transition: all 0.3s ease;
   pointer-events: none;
   backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 119, 255, 0.3);
+  animation: tip-breathe 2.5s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.project-card:hover .card-tip {
+/* 手机端调整 */
+@media (max-width: 768px) {
+  .card-tip {
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+}
+
+/* 呼吸动画让提示更显眼 */
+@keyframes tip-breathe {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-2px) scale(1.05);
+  }
+}
+
+.project-card:hover .card-tip,
+.education-card:hover .card-tip {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(-3px) scale(1.1);
+  background: rgba(0, 119, 255, 1);
+  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.5);
+  animation: none;
 }
 
 body.dark .card-tip {
-  background: rgba(0, 207, 255, 0.9);
+  background: rgba(0, 207, 255, 0.85);
+  box-shadow: 0 2px 10px rgba(0, 207, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-body.dark .project-card:hover .card-tip {
-  background: rgba(0, 207, 255, 0.9);
+body.dark .project-card:hover .card-tip,
+body.dark .education-card:hover .card-tip {
+  background: rgba(0, 207, 255, 1);
+  box-shadow: 0 4px 15px rgba(0, 207, 255, 0.5);
+}
+
+/* 深色模式下的呼吸动画 */
+body.dark .card-tip {
+  animation: tip-breathe-dark 2.5s ease-in-out infinite;
+}
+
+@keyframes tip-breathe-dark {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-2px) scale(1.05);
+  }
 }
 
 /* ===== YEAR SPAN STYLES ===== */

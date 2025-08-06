@@ -127,8 +127,9 @@
   <section class="section" id="work">
     <h2 data-en="💼 Work Experience" data-zh="💼 工作经历"></h2>
     <div class="project-grid">
-      <div class="project-card">
-        <h3 data-en="Data Scientist" data-zh="数据科学家"></h3>
+      <div class="project-card" data-link="https://buymeeuk.com/#/">
+        <div class="card-tip" data-en="Click to view" data-zh="点击查看"></div>
+        <h3 data-en="Software Engineer" data-zh="软件工程师"></h3>
         <p class="institution" data-en="GROUPME LTD, London, United Kingdom" data-zh="GROUPME有限公司，英国伦敦"></p>
         <p class="year" data-en="Feb 2024 - Jun 2024" data-zh="2024年2月 - 2024年6月"></p>
         <ul>
@@ -140,7 +141,7 @@
       </div>
       
       <div class="project-card">
-        <h3 data-en="Network Back-End Technical Management" data-zh="网络后端技术管理"></h3>
+        <h3 data-en="Back-End Engineer" data-zh="后端工程师"></h3>
         <p class="institution" data-en="Guangdong Excellent Gas Group Investment Co., Ltd, Guangdong, China" data-zh="广东卓越燃气集团投资有限公司，中国广东"></p>
         <p class="year" data-en="Jun 2021 - Sep 2021" data-zh="2021年6月 - 2021年9月"></p>
         <ul>
@@ -189,7 +190,8 @@
   <section class="section" id="education">
     <h2 data-en="🎓 Education" data-zh="🎓 教育背景"></h2>
     <div class="education-grid">
-      <div class="education-card">
+      <div class="education-card" data-transcript="Final_Transcript_UCL.pdf">
+        <div class="card-tip" data-en="Click to view transcript" data-zh="点击查看成绩单"></div>
         <h3 data-en="Master of Science: Computer Science: Robotics and Computation" data-zh="理学硕士：计算机科学：机器人与计算"></h3>
         <p class="institution" data-en="University College London, London, UK" data-zh="伦敦大学学院，英国伦敦"></p>
         <p class="year" data-en="09/2023 - 06/2024" data-zh="2023年9月 - 2024年6月"></p>
@@ -204,7 +206,8 @@
         </ul>
       </div>
       
-      <div class="education-card">
+      <div class="education-card" data-transcript="Final_Transcript_Sussex.pdf">
+        <div class="card-tip" data-en="Click to view transcript" data-zh="点击查看成绩单"></div>
         <h3 data-en="Bachelor of Science: Computer Science: Artificial Intelligence" data-zh="理学学士：计算机科学：人工智能"></h3>
         <p class="institution" data-en="University of Sussex, Brighton, UK" data-zh="萨塞克斯大学，英国布莱顿"></p>
         <p class="year" data-en="09/2018 - 06/2023" data-zh="2018年9月 - 2023年6月"></p>
@@ -308,7 +311,7 @@
   </footer>
 
   <!-- Back to Top Button -->
-  <button id="backToTop" aria-label="Back to top" title="Back to top">
+  <button id="backToTop" aria-label="Back to top" title="回到顶部 / Back to top" data-tooltip-en="Back to top" data-tooltip-zh="回到顶部">
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="14" cy="14" r="14" fill="currentColor"/>
       <path d="M14 20V8M14 8L9 13M14 8L19 13" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -317,10 +320,10 @@
 
   <!-- Mobile Floating Buttons -->
   <div class="mobile-floating-buttons">
-    <button class="mobile-floating-btn" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle theme">
+    <button class="mobile-floating-btn" onclick="toggleTheme()" aria-label="Toggle theme" title="切换主题 / Toggle theme" data-tooltip-en="Toggle theme" data-tooltip-zh="切换主题">
       🌙
     </button>
-    <button class="mobile-floating-btn" onclick="toggleLang()" aria-label="Toggle language" title="Toggle language">
+    <button class="mobile-floating-btn" onclick="toggleLang()" aria-label="Toggle language" title="切换语言 / Toggle language" data-tooltip-en="Toggle language" data-tooltip-zh="切换语言">
       🌐
     </button>
   </div>
@@ -666,6 +669,111 @@
       document.body.removeChild(link);
     }
     
+    // ===== TRANSCRIPT PREVIEW FUNCTIONS =====
+    function openTranscriptModal(transcriptFile) {
+      const modal = document.getElementById("pdfModal");
+      const iframe = document.getElementById("pdfIframe");
+      
+      // WeChat browser fallback
+      if (isWeChatBrowser()) {
+        iframe.style.display = 'none';
+        const wechatFallback = document.createElement('div');
+        wechatFallback.innerHTML = `
+          <div style="text-align: center; padding: 40px; color: #333;">
+            <div style="font-size: 3rem; margin-bottom: 20px;">📄</div>
+            <h3 style="margin-bottom: 15px;">Preview Transcript</h3>
+            <p style="margin-bottom: 25px; color: #666; line-height: 1.6;">
+              Due to the limitations of WeChat browser, the PDF file cannot be previewed directly.<br>
+              Please click the button below to download the transcript file.
+            </p>
+            <a href="${transcriptFile}" download class="btn" style="margin: 10px;">⬇️ Download Transcript</a>
+            <button onclick="closeModal()" class="btn btn-outline" style="margin: 10px;">Close</button>
+          </div>
+        `;
+        
+        const existingFallback = modal.querySelector('.modal-content > div:last-child');
+        if (existingFallback && !existingFallback.classList.contains('modal-close')) {
+          existingFallback.remove();
+        }
+        
+        modal.querySelector('.modal-content').appendChild(wechatFallback);
+        modal.classList.add("active");
+        document.body.style.overflow = 'hidden';
+        return;
+      }
+      
+      // Standard PDF preview logic
+      if (typeof pdfjsLib !== 'undefined') {
+        iframe.style.display = 'none';
+        
+        const canvasContainer = document.createElement('div');
+        canvasContainer.id = 'pdf-canvas-container';
+        canvasContainer.style.maxHeight = '80vh';
+        
+        const existingContainer = modal.querySelector('#pdf-canvas-container');
+        if (existingContainer) {
+          existingContainer.remove();
+        }
+        
+        modal.querySelector('.modal-content').appendChild(canvasContainer);
+        
+        pdfjsLib.getDocument(transcriptFile).promise.then(function(pdf) {
+          pdf.getPage(1).then(function(page) {
+            const containerWidth = canvasContainer.offsetWidth;
+            const unscaledViewport = page.getViewport({ scale: 1 });
+            const pixelRatio = window.devicePixelRatio || 1;
+            const baseScale = containerWidth / unscaledViewport.width;
+            const scale = baseScale * Math.min(pixelRatio, 2);
+            const viewport = page.getViewport({ scale: scale });
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = viewport.width * pixelRatio;
+            canvas.height = viewport.height * pixelRatio;
+            canvas.style.width = viewport.width + 'px';
+            context.scale(pixelRatio, pixelRatio);
+
+            canvasContainer.appendChild(canvas);
+
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport
+            };
+
+            page.render(renderContext);
+          });
+        }).catch(function(error) {
+          console.error('PDF loading failed:', error);
+          iframe.style.display = 'block';
+          iframe.src = transcriptFile + '#toolbar=0&navpanes=0&scrollbar=0';
+          canvasContainer.remove();
+        });
+      } else {
+        iframe.style.display = 'block';
+        iframe.src = transcriptFile + '#toolbar=0&navpanes=0&scrollbar=0';
+        
+        iframe.onload = function() {
+          console.log("PDF loaded successfully");
+        };
+        
+        iframe.onerror = function() {
+          console.error("Failed to load PDF");
+          iframe.style.display = 'none';
+          const fallback = document.createElement('div');
+          fallback.innerHTML = `
+            <div style="text-align: center; padding: 40px;">
+              <p>PDF无法在浏览器中预览</p>
+              <a href="${transcriptFile}" target="_blank" class="btn">在新窗口中打开PDF</a>
+            </div>
+          `;
+          modal.querySelector('.modal-content').appendChild(fallback);
+        };
+      }
+      
+      modal.classList.add("active");
+      document.body.style.overflow = 'hidden';
+    }
+    
     // Modal event listeners
     document.getElementById("pdfModal").addEventListener("click", function(e) {
       if (e.target === this) {
@@ -794,6 +902,13 @@
             if (e.target.closest('a')) return;
             const url = card.getAttribute('data-link');
             if (url) window.open(url, '_blank');
+          });
+          
+          // Click navigation for education cards with transcript
+          card.addEventListener('click', function(e) {
+            if (e.target.closest('a')) return;
+            const transcript = card.getAttribute('data-transcript');
+            if (transcript) openTranscriptModal(transcript);
           });
           
           // 3D hover animation (desktop only)
