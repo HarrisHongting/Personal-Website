@@ -492,6 +492,136 @@ body.dark .project-card h3 a:hover {
   color: #00cfff;
 }
 
+/* ===== EXPERIENCE LIST ===== */
+.work-list {
+  grid-template-columns: 1fr;
+  max-width: 980px;
+  gap: 1.5rem;
+}
+
+.work-list .project-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "title"
+    "institution"
+    "year"
+    "details";
+  align-items: start;
+  row-gap: 0.35rem;
+  padding: 1.7rem 1.9rem;
+}
+
+.work-list .project-card h3 {
+  grid-area: title;
+  min-height: 0;
+  margin: 0 auto 1rem;
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.work-list .project-card .institution {
+  grid-area: institution;
+  justify-self: center;
+  margin: 0.45rem auto 0;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+.work-list .project-card .year {
+  grid-area: year;
+  justify-self: center;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+  white-space: normal;
+  text-align: center;
+  color: #666;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.work-list .project-card .card-tip {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  white-space: nowrap;
+}
+
+.work-list .project-card ul {
+  grid-area: details;
+  margin-top: 1.15rem;
+}
+
+.work-list .project-card p {
+  text-align: center;
+}
+
+body.dark .work-list .project-card .year {
+  color: #aaa;
+  background: transparent;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .work-list {
+    max-width: 100%;
+  }
+
+  .work-list .project-card {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "institution"
+      "year"
+      "details";
+    padding: 2.65rem 1.35rem 1.35rem;
+  }
+
+  .work-list .project-card h3 {
+    padding: 0;
+  }
+
+  .work-list .project-card .year {
+    justify-self: center;
+    margin-top: 0.45rem;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    color: #666;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    font-weight: 400;
+  }
+
+  .work-list .project-card .card-tip {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    grid-area: auto;
+    justify-self: auto;
+    margin-top: 0;
+  }
+
+  .work-list .project-card ul {
+    margin-top: 1rem;
+  }
+
+  body.dark .work-list .project-card .year {
+    color: #aaa;
+    background: transparent;
+    border: 0;
+  }
+}
+
 /* ===== EDUCATION GRID ===== */
 .education-grid {
   display: grid;
@@ -757,6 +887,19 @@ body.dark .hobby-card p {
 
 body.dark #pdf-canvas-container {
   background: #2b2b2b;
+}
+
+/* PDF Page Styles for Dark Theme */
+body.dark .pdf-page {
+  background: #1e1e1e !important;
+  border-color: #333 !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+}
+
+body.dark .page-number {
+  background: rgba(0, 207, 255, 0.1) !important;
+  color: #00cfff !important;
+  border-color: rgba(0, 207, 255, 0.3) !important;
 }
 
 .modal-close {
@@ -1989,6 +2132,11 @@ body.dark .mobile-floating-btn:hover {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+.education-card .card-tip {
+  pointer-events: auto;
+  text-decoration: none;
+}
+
 /* 手机端调整 */
 @media (max-width: 768px) {
   .card-tip {
@@ -2052,8 +2200,8 @@ body.dark .card-tip {
 
 /* ===== YEAR SPAN STYLES ===== */
 .year span {
-  color: #0077ff;
-  font-weight: 600;
+  color: inherit;
+  font-weight: inherit;
 }
 
 /* ===== PROJECT CARD ENHANCEMENTS ===== */
@@ -2096,6 +2244,7 @@ body.dark .card-tip {
   line-height: 1.4;
   margin-bottom: 1rem;
   color: #333;
+  text-align: center;
   transition: color 0.3s ease;
 }
 
@@ -2104,6 +2253,7 @@ body.dark .card-tip {
   min-height: 3.6rem; /* 2 lines of text (1.3rem * 1.4 * 2) */
   display: flex;
   align-items: flex-start;
+  justify-content: center;
 }
 
 @media (max-width: 900px) {
