@@ -1,10 +1,23 @@
 /* ===== GLOBAL STYLES ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .hamburger { 
   display: none; 
 }
 
 body {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
   font-family: 'Inter', sans-serif;
   background-color: #f8f9fa;
   color: #212529;
@@ -12,6 +25,12 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
   position: relative;
   overflow-x: hidden;
+}
+
+img,
+canvas,
+iframe {
+  max-width: 100%;
 }
 
 /* ===== PARTICLE BACKGROUND ===== */
@@ -2346,3 +2365,120 @@ body.dark .card-tip {
   color: #666;
   line-height: 1.6;
 }  
+
+/* ===== MOBILE WIDTH SAFETY ===== */
+@media (max-width: 768px) {
+  .section {
+    padding-left: clamp(0.85rem, 4vw, 1.25rem);
+    padding-right: clamp(0.85rem, 4vw, 1.25rem);
+    overflow-x: hidden;
+  }
+
+  .hero,
+  .section,
+  .project-grid,
+  .education-grid,
+  .hobbies-grid,
+  .course-list,
+  .about-strengths ul,
+  .about-hobbies ul,
+  .buttons,
+  .socials {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero {
+    width: auto;
+    max-width: calc(100% - 1.7rem);
+    min-height: calc(100svh - 1.7rem);
+    margin: 0.85rem auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero h1,
+  .hero p {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .project-grid,
+  .education-grid,
+  .hobbies-grid,
+  .course-list,
+  .about-strengths ul,
+  .about-hobbies ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-card,
+  .education-card,
+  .hobby-card,
+  .about-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .project-card *,
+  .education-card *,
+  .hobby-card *,
+  .about-card * {
+    min-width: 0;
+  }
+
+  .project-card,
+  .education-card,
+  .hobby-card,
+  .about-card,
+  .project-card p,
+  .education-card p,
+  .hobby-card p,
+  .about-card p,
+  .project-card li,
+  .education-card li,
+  .hobby-card li,
+  .about-card li,
+  .project-card h3,
+  .education-card h3,
+  .hobby-card h3,
+  .about-card h3,
+  .about-card h4 {
+    overflow-wrap: anywhere;
+  }
+
+  .project-img {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    max-width: calc(100% - 1rem);
+    min-height: calc(100svh - 1rem);
+    margin: 0.5rem auto;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .section {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .project-card,
+  .education-card,
+  .hobby-card {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-card {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
