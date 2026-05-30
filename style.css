@@ -1700,15 +1700,9 @@ body.dark .avatar {
   border-color: #333;
 }
 
-body.dark .hero,
-body.dark .hero:hover {
+body.dark .hero {
   background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.2) 100%);
   box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-}
-
-body.dark .hero:hover {
-  background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
 }
 
 body.dark .btn {
@@ -1729,8 +1723,7 @@ body.dark .btn-outline:hover {
   background: rgba(0, 207, 255, 0.1);
 }
 
-.hero,
-.hero:hover {
+.hero {
   background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -1739,15 +1732,17 @@ body.dark .btn-outline:hover {
   transition: all 0.3s ease;
 }
 
-.hero:hover {
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-  transform: translateY(-2px);
-}
+@media (hover: hover) and (pointer: fine) {
+  .hero:hover {
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+  }
 
-body.dark .hero:hover {
-  background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  body.dark .hero:hover {
+    background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
 }
 
 /* ===== THEME TOGGLE RESPONSIVE ===== */
