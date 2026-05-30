@@ -2206,6 +2206,95 @@ body.dark .card-tip {
   animation: tip-breathe-dark 2.5s ease-in-out infinite;
 }
 
+/* Touch devices do not have reliable hover, so keep cards visually stable. */
+@media (hover: none), (pointer: coarse) {
+  .project-card,
+  .about-card,
+  .education-card,
+  .hobby-card,
+  .lsdm-project,
+  .tolitd-project,
+  .project-card:hover,
+  .about-card:hover,
+  .education-card:hover,
+  .hobby-card:hover,
+  .lsdm-project:hover,
+  .tolitd-project:hover,
+  .project-card.card-hover,
+  .about-card.card-hover,
+  .education-card.card-hover,
+  .hobby-card.card-hover {
+    transform: none !important;
+  }
+
+  .project-card:hover,
+  .education-card:hover,
+  .hobby-card:hover,
+  .project-card.card-hover,
+  .education-card.card-hover,
+  .hobby-card.card-hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .about-card:hover,
+  .about-card.card-hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  }
+
+  body.dark .project-card:hover,
+  body.dark .education-card:hover,
+  body.dark .hobby-card:hover,
+  body.dark .project-card.card-hover,
+  body.dark .education-card.card-hover,
+  body.dark .hobby-card.card-hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  body.dark .about-card:hover,
+  body.dark .about-card.card-hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  .project-card.card-hover h3,
+  .project-card.card-hover h3 a,
+  .project-card h3 a:hover,
+  .lsdm-project h3 a:hover,
+  .tolitd-project h3 a:hover {
+    color: #333 !important;
+  }
+
+  body.dark .project-card.card-hover h3,
+  body.dark .project-card.card-hover h3 a,
+  body.dark .project-card h3 a:hover,
+  body.dark .lsdm-project h3 a:hover,
+  body.dark .tolitd-project h3 a:hover {
+    color: #e0e0e0 !important;
+  }
+
+  .card-tip,
+  body.dark .card-tip,
+  .project-card:hover .card-tip,
+  .education-card:hover .card-tip,
+  body.dark .project-card:hover .card-tip,
+  body.dark .education-card:hover .card-tip {
+    animation: none;
+    opacity: 0.82;
+    transform: none;
+  }
+
+  .project-card:hover .card-tip,
+  .education-card:hover .card-tip {
+    background: rgba(0, 119, 255, 0.85);
+    box-shadow: 0 2px 10px rgba(0, 119, 255, 0.3);
+  }
+
+  body.dark .project-card:hover .card-tip,
+  body.dark .education-card:hover .card-tip {
+    background: rgba(0, 207, 255, 0.85);
+    box-shadow: 0 2px 10px rgba(0, 207, 255, 0.3);
+  }
+}
+
 @keyframes tip-breathe-dark {
   0%, 100% {
     opacity: 0.7;

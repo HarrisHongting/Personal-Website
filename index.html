@@ -970,61 +970,85 @@
 
   <!-- 3D Card Effects Script -->
   <script>
+    const cardHoverQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const interactiveCardSelector = '.project-card, .education-card, .hobby-card';
+
+    function resetCardHover(card) {
+      card.style.transform = '';
+      card.classList.remove('card-hover');
+    }
+
+    function handleCardMouseMove(e) {
+      if (!cardHoverQuery.matches) return;
+
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const maxRotate = 5;
+      const rotateY = ((x - centerX) / centerX) * maxRotate;
+      const rotateX = -((y - centerY) / centerY) * maxRotate;
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+      card.classList.add('card-hover');
+    }
+
+    function handleCardMouseLeave(e) {
+      resetCardHover(e.currentTarget);
+    }
+
+    function handleCardMouseEnter(e) {
+      if (!cardHoverQuery.matches) return;
+      e.currentTarget.style.transition = 'transform 0.18s cubic-bezier(.25,.8,.25,1)';
+    }
+
+    function handleCardClick(e) {
+      const card = e.currentTarget;
+      if (e.target.closest('a')) return;
+
+      const url = card.getAttribute('data-link');
+      if (url) {
+        window.open(url, '_blank');
+        return;
+      }
+
+      const transcript = card.getAttribute('data-transcript');
+      if (transcript) openTranscriptModal(transcript);
+    }
+
     function enable3DCardEffect() {
-      ['project-card', 'education-card', 'hobby-card'].forEach(cls => {
-        document.querySelectorAll('.' + cls).forEach(card => {
-          card.style.cursor = 'pointer';
-          
-          // Click navigation (only for project cards with data-link)
-          card.addEventListener('click', function(e) {
-            if (e.target.closest('a')) return;
-            const url = card.getAttribute('data-link');
-            if (url) window.open(url, '_blank');
-          });
-          
-          // Click navigation for education cards with transcript
-          card.addEventListener('click', function(e) {
-            if (e.target.closest('a')) return;
-            const transcript = card.getAttribute('data-transcript');
-            if (transcript) openTranscriptModal(transcript);
-          });
-          
-          // 3D hover animation (desktop only)
-          if (window.innerWidth > 600) {
-            card.addEventListener('mousemove', function(e) {
-              const rect = card.getBoundingClientRect();
-              const x = e.clientX - rect.left;
-              const y = e.clientY - rect.top;
-              const centerX = rect.width / 2;
-              const centerY = rect.height / 2;
-              const maxRotate = 5;
-              const rotateY = ((x - centerX) / centerX) * maxRotate;
-              const rotateX = -((y - centerY) / centerY) * maxRotate;
-              card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-              card.classList.add('card-hover');
-            });
-            
-            card.addEventListener('mouseleave', function() {
-              card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
-              card.classList.remove('card-hover');
-            });
-            
-            card.addEventListener('mouseenter', function() {
-              card.style.transition = 'transform 0.18s cubic-bezier(.25,.8,.25,1)';
-            });
-          }
-        });
+      document.querySelectorAll(interactiveCardSelector).forEach(card => {
+        const isClickable = card.hasAttribute('data-link') || card.hasAttribute('data-transcript');
+        card.style.cursor = isClickable ? 'pointer' : '';
+
+        if (!card.dataset.cardClickBound) {
+          card.addEventListener('click', handleCardClick);
+          card.dataset.cardClickBound = 'true';
+        }
+
+        if (!card.dataset.cardHoverBound) {
+          card.addEventListener('mousemove', handleCardMouseMove);
+          card.addEventListener('mouseleave', handleCardMouseLeave);
+          card.addEventListener('mouseenter', handleCardMouseEnter);
+          card.dataset.cardHoverBound = 'true';
+        }
+
+        if (!cardHoverQuery.matches) resetCardHover(card);
       });
     }
     
     window.addEventListener('DOMContentLoaded', enable3DCardEffect);
     window.addEventListener('resize', function() {
-      document.querySelectorAll('.project-card, .education-card, .hobby-card').forEach(card => {
-        card.style.transform = '';
-        card.classList.remove('card-hover');
-      });
+      document.querySelectorAll(interactiveCardSelector).forEach(resetCardHover);
       enable3DCardEffect();
     });
+
+    if (cardHoverQuery.addEventListener) {
+      cardHoverQuery.addEventListener('change', enable3DCardEffect);
+    } else {
+      cardHoverQuery.addListener(enable3DCardEffect);
+    }
   </script>
 
   <!-- Back to Top Script -->
