@@ -2369,9 +2369,19 @@ body.dark .card-tip {
 /* ===== MOBILE WIDTH SAFETY ===== */
 @media (max-width: 768px) {
   .section {
+    padding-top: 2.2rem;
+    padding-bottom: 2.2rem;
     padding-left: clamp(0.85rem, 4vw, 1.25rem);
     padding-right: clamp(0.85rem, 4vw, 1.25rem);
     overflow-x: hidden;
+  }
+
+  .section h2 {
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+    white-space: nowrap;
+    word-break: keep-all;
   }
 
   .hero,
@@ -2410,6 +2420,7 @@ body.dark .card-tip {
   .about-strengths ul,
   .about-hobbies ul {
     grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
   }
 
   .project-card,
@@ -2419,6 +2430,20 @@ body.dark .card-tip {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+  }
+
+  .project-card,
+  .education-card,
+  .hobby-card {
+    padding: 1.2rem;
+  }
+
+  .work-list .project-card {
+    padding: 2.45rem 1.2rem 1.2rem;
+  }
+
+  .work-list {
+    gap: 1rem;
   }
 
   .project-card *,
@@ -2464,15 +2489,25 @@ body.dark .card-tip {
   }
 
   .section {
+    padding-top: 1.7rem;
+    padding-bottom: 1.7rem;
     padding-left: 0.85rem;
     padding-right: 0.85rem;
+  }
+
+  .section h2 {
+    font-size: 1.22rem;
+    margin-bottom: 1rem;
   }
 
   .project-card,
   .education-card,
   .hobby-card {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 1rem;
+  }
+
+  .work-list .project-card {
+    padding: 2.35rem 1rem 1rem;
   }
 
   .about-card {
